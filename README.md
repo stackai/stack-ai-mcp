@@ -1,3 +1,5 @@
+![Stack AI Cover](https://github.com/stackai/stack-ai-mcp/resources/cover.png)
+
 <div align="center"><strong>Stack AI MCP Server</strong></div>
 <div align="center">A powerful MCP server for building and deploying AI applications.<br />Connect your enterprise data sources and enhance your AI capabilities.</div>
 <br />
