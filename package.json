@@ -1,26 +1,24 @@
 {
-  "name": "hello_world",
+  "name": "stack-ai-mcp-server",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "description": "Stack AI MCP Server for running workflows through Model Context Protocol",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts"
+    "dev": "tsx src/main.ts",
+    "dev:watch": "tsx watch src/main.ts",
+    "test": "tsx src/main.ts"
   },
-  "keywords": [],
+  "keywords": ["mcp", "model-context-protocol", "stack-ai", "ai"],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "@types/node": "^20.17.24",
-    "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.7.0",
-    "@types/express": "^5.0.0",
-    "express": "^4.21.2",
-    "zod": "^3.24.2"
+    "@modelcontextprotocol/sdk": "^1.7.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
