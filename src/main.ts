@@ -18,7 +18,7 @@ const server = new Server({
 server.setRequestHandler(ListToolsRequestSchema, async () => {
     return {
         tools: [{
-            name: "run_workflow",
+            name: "get_downtime_data",
             description: "Run a workflow to perform a task and answer with the result",
             inputSchema: {
                 type: "object",
@@ -27,20 +27,16 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
                         type: "string",
                         description: "The input for the workflow"
                     },
-                    user_id: {
-                        type: "string",
-                        description: "The user ID for the workflow"
-                    }
                 },
-                required: ["input", "user_id"]
+                required: ["input"]
             }
         }]
     };
 });
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
-    if (request.params.name === "run_workflow") {
-        const { input, user_id } = request.params.arguments as { input: string; user_id: string };
+    if (request.params.name === "get_downtime_data") {
+        const { input } = request.params.arguments as { input: string };
         
         const response = await fetch(`https://api.stack-ai.com/inference/v0/run/${process.env.STACK_AI_ORG_ID}/${process.env.STACK_AI_PROJECT_ID}`, {
             method: 'POST',
@@ -50,7 +46,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
             },
             body: JSON.stringify({
                 "in-0": input,
-                "user_id": user_id
+                "user_id": "your_email@example.com"
             })
         });
 
