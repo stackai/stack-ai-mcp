@@ -18,7 +18,7 @@ const server = new Server({
 server.setRequestHandler(ListToolsRequestSchema, async () => {
     return {
         tools: [{
-            name: "get_downtime_data",
+            name: "stack_ai_workflow",
             description: "Run a workflow to perform a task and answer with the result",
             inputSchema: {
                 type: "object",
@@ -35,7 +35,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 });
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
-    if (request.params.name === "get_downtime_data") {
+    if (request.params.name === "stack_ai_workflow") {
         const { input } = request.params.arguments as { input: string };
         
         const response = await fetch(`https://api.stack-ai.com/inference/v0/run/${process.env.STACK_AI_ORG_ID}/${process.env.STACK_AI_PROJECT_ID}`, {
