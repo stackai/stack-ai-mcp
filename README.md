@@ -23,14 +23,14 @@ A Model Context Protocol (MCP) server that connects to Stack AI workflows, allow
 
 ## Setup
 
-1. First, ensure you have the following environment variables set:
-   - `STACK_AI_ORG_ID`: Your Stack AI organization ID
-   - `STACK_AI_PROJECT_ID`: Your Stack AI project ID 
-   - `STACK_API_KEY`: Your Stack AI API key
+### Prerequisites
 
-# Installing
+You'll need the following Stack AI credentials:
+- `STACK_AI_ORG_ID`: Your Stack AI organization ID
+- `STACK_AI_PROJECT_ID`: Your Stack AI project ID 
+- `STACK_API_KEY`: Your Stack AI API key
 
-To use the Stack AI MCP Server in Claude Desktop application, you have to install this Github project in your computer and include the absolute path of the main.ts code.
+### Installation
 
 1. Clone the repository to your local machine:
    ```bash
@@ -47,5 +47,35 @@ To use the Stack AI MCP Server in Claude Desktop application, you have to instal
    npm install
    ```
 
-This will install all required dependencies and compile the TypeScript code.
+### Claude Desktop Configuration
+
+To use the Stack AI MCP Server with Claude Desktop, add the following to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "stack-ai-workflow": {
+      "command": "node",
+      "args": ["/absolute/path/to/stack-ai-mcp/src/main.ts"],
+      "env": {
+        "STACK_AI_ORG_ID": "your_org_id_here",
+        "STACK_AI_PROJECT_ID": "your_project_id_here", 
+        "STACK_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+Replace `/absolute/path/to/stack-ai-mcp/src/main.ts` with the actual absolute path to your cloned repository, and replace the environment variable values with your actual Stack AI credentials.
+
+### Testing Locally
+
+To test the MCP server locally:
+
+```bash
+npm run dev
+```
+
+This will start the server and you should see: "Stack AI MCP Server running on stdio"
 
